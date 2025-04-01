@@ -1,6 +1,7 @@
-package net.aiysha666.nsfwenvironment;
+package net.aiysha666.unsafeworkpractises;
 
-import net.aiysha666.nsfwenvironment.item.ModItems;
+import net.aiysha666.unsafeworkpractises.block.ModBlocks;
+import net.aiysha666.unsafeworkpractises.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -20,14 +21,14 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(NSFWEnviroment.MOD_ID)
-public class NSFWEnviroment {
-    public static final String MOD_ID = "nsfwenvironment";
+@Mod(unsafeworkpractises.MOD_ID)
+public class unsafeworkpractises {
+    public static final String MOD_ID = "unsafeworkpractises";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public NSFWEnviroment(IEventBus modEventBus, ModContainer modContainer) {
+    public unsafeworkpractises(IEventBus modEventBus, ModContainer modContainer) {
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
@@ -35,6 +36,7 @@ public class NSFWEnviroment {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -52,6 +54,11 @@ public class NSFWEnviroment {
             event.accept(ModItems.SILLYSHARD);
             event.accept(ModItems.SILLYCRYSTAL);
         }
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.SILLY_CRYSTAL_BLOCK);
+            event.accept(ModBlocks.SILLY_SHARD_CLUSTER);
+        }
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

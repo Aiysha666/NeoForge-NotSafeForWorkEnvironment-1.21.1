@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "unsafeworkpractises:block/silly_shard_cluster"
+    }
+  }
+}
